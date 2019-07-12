@@ -1,8 +1,8 @@
 package com.appdetex.devops
 
-import com.appdetex.devops.aws.client.EcsClient
 import com.appdetex.devops.domain.EnvironmentVersionsDTO
 import com.appdetex.devops.domain.Project
+import com.appdetex.devops.service.EcsService
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import freemarker.cache.ClassTemplateLoader
@@ -66,7 +66,7 @@ fun main(args: Array<String>) {
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
 
-    val ecsClient: EcsClient by inject()
+    val ecsService: EcsService by inject()
 
     install(FreeMarker) {
         templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
@@ -107,7 +107,14 @@ fun Application.module(testing: Boolean = false) {
 
     routing {
         get("/") {
-            call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
+
+            val response = ecsService.getTasks("Waits")
+
+            val responseHeader = "FAMILY - STATUS - IMAGE"
+            val responseText = response.values.sortedBy { it.family() }
+                .joinToString(separator = "\n") { "${it.family()} - ${it.statusAsString()} - ${it.containerDefinitions()[0].image()}"}
+
+            call.respondText("$responseHeader\n$responseText", contentType = ContentType.Text.Plain)
         }
 
         get("/versions/{environment}") {
