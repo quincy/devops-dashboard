@@ -16,7 +16,7 @@ class EcsServiceImpl(private val client: EcsClient): EcsService {
         val taskList = client.listTasks(cluster).get()
         val tasks = client.describeTasks(cluster, taskList.taskArns()).get().tasks()
 
-        // TODO: Seems like we can only grab one task definition at a time?
-        return tasks.associateWith { client.describeTaskDefinition(cluster, it.taskDefinitionArn()).get().taskDefinition() }
+        // TODO: Determine if we can perform a bulk request for multiple task definitions
+        return tasks.associateWith { client.describeTaskDefinition(it.taskDefinitionArn()).get().taskDefinition() }
     }
 }
