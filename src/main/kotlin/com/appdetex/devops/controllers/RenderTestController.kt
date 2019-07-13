@@ -67,7 +67,7 @@ fun Route.renderTestController() {
 @Suppress("unused")
 fun FlowOrMetaDataContent.styleCss(builder: CSSBuilder.() -> Unit) {
     style(type = ContentType.Text.CSS.toString()) {
-        CSSBuilder().apply(builder).toString().unaryPlus()
+        CSSBuilder().apply(builder).toString()
     }
 }
 
