@@ -1,6 +1,6 @@
-package com.appdetex.devops.service
+package com.appdetex.devops.service.aws
 
-import com.appdetex.devops.client.EcsClient
+import com.appdetex.devops.client.aws.EcsClient
 import software.amazon.awssdk.services.ecs.model.Task
 import software.amazon.awssdk.services.ecs.model.TaskDefinition
 

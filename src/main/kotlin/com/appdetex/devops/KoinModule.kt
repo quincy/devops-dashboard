@@ -1,9 +1,9 @@
 package com.appdetex.devops
 
-import com.appdetex.devops.client.EcsClient
-import com.appdetex.devops.client.EcsClientImpl
-import com.appdetex.devops.service.EcsService
-import com.appdetex.devops.service.EcsServiceImpl
+import com.appdetex.devops.client.aws.EcsClient
+import com.appdetex.devops.client.aws.EcsClientImpl
+import com.appdetex.devops.service.aws.EcsService
+import com.appdetex.devops.service.aws.EcsServiceImpl
 import org.koin.dsl.module.module
 import software.amazon.awssdk.auth.credentials.AwsSessionCredentials
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider

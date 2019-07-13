@@ -1,4 +1,4 @@
-package com.appdetex.devops.client
+package com.appdetex.devops.client.aws
 
 import software.amazon.awssdk.services.ecs.EcsAsyncClient
 import software.amazon.awssdk.services.ecs.model.*

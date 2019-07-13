@@ -1,6 +1,5 @@
 package com.appdetex.devops.controllers
 
-import com.appdetex.devops.domain.IndexData
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.freemarker.FreeMarkerContent
@@ -79,3 +78,5 @@ fun CommonAttributeGroupFacade.style(builder: CSSBuilder.() -> Unit) {
 suspend inline fun ApplicationCall.respondCss(builder: CSSBuilder.() -> Unit) {
     this.respondText(CSSBuilder().apply(builder).toString(), ContentType.Text.CSS)
 }
+
+data class IndexData(val items: List<Int>)

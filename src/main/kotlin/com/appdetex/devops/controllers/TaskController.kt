@@ -1,6 +1,6 @@
 package com.appdetex.devops.controllers
 
-import com.appdetex.devops.service.EcsService
+import com.appdetex.devops.service.aws.EcsService
 import io.ktor.application.call
 import io.ktor.http.ContentType
 import io.ktor.response.respondText
@@ -10,12 +10,12 @@ import io.ktor.routing.route
 import org.koin.ktor.ext.inject
 
 
-fun Route.ecsTestController() {
+fun Route.taskController() {
 
     val ecsService: EcsService by inject()
 
-    route("/") {
-        get {
+    route("/tasks") {
+        get("/test") {
             val response = ecsService.getTasks("Waits")
 
             val responseHeader = "FAMILY - STATUS - IMAGE"
